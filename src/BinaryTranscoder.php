@@ -24,6 +24,16 @@ namespace ryanwhowe;
 class BinaryTranscoder {
 
     /**
+     * Pad the unmapped key values to false
+     */
+    CONST BOOLEAN_PAD_FALSE = false;
+
+    /**
+     * Pad the unmapped key values to true
+     */
+    CONST BOOLEAN_PAD_TRUE = true;
+
+    /**
      * @var array The array of ordered keys that will be associated with the binary output
      */
     private $key_array;
@@ -41,11 +51,11 @@ class BinaryTranscoder {
     /**
      * BinaryTranscoder constructor.
      *
-     * @param $key_array array The array of ordered keys that will be associated with the binary output
-     * @param $pad_boolean boolean The default backwards compatibility value when new array elements are added
+     * @param array $key_array The array of ordered keys that will be associated with the binary output
+     * @param boolean $pad_boolean  The default backwards compatibility value when new array elements are added
      * @throws \Exception if more array elements than what can be transcoded are passes to the constructor
      */
-    public function __construct($key_array, $pad_boolean = false)
+    public function __construct(array $key_array, $pad_boolean = self::BOOLEAN_PAD_FALSE)
     {
 
         $this->key_array = $key_array;
@@ -55,7 +65,7 @@ class BinaryTranscoder {
             throw new BinaryTranscoderException("The maximum amount of array field that can be transcoded is {$max_count}");
         }
         $this->array_length = $count;
-        $this->pad_boolean = $pad_boolean;
+        $this->pad_boolean = (boolean)$pad_boolean;
     }
 
     /**
