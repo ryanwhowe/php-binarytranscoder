@@ -138,6 +138,7 @@ class BinaryTranscoderTest extends \PHPUnit\Framework\TestCase {
      * @expectedException \ryanwhowe\BinaryTranscoderException
      * @covers \ryanwhowe\BinaryTranscoder::__construct()
      * @covers \ryanwhowe\BinaryTranscoder::determineMaxArrayLength
+     * @throws \Exception
      */
     public function maxItemCountOverFlow()
     {
@@ -146,7 +147,7 @@ class BinaryTranscoderTest extends \PHPUnit\Framework\TestCase {
         for ($i = 1; $i <= $array_count; $i++) {
             $test_array[$i] = false;
         }
-        $tr = new \ryanwhowe\BinaryTranscoder($test_array);
+        new \ryanwhowe\BinaryTranscoder($test_array);
     }
 
     /**

@@ -96,7 +96,7 @@ Here are some additional plans that I am working on any may appear in future rel
 ### todo
 - [ ] Additional testing for instantiation
 - [ ] Complete documentation on class methods
-- [ ] Workout bitwise operations to make searches easier
+- [ ] Workout bitwise operations to make searches easier/possible/maybe :-/
 - [ ] Additional test cases
 - [ ] Explore converting this package to a php extension
 - [ ] Allow for null values when new key items have been added
