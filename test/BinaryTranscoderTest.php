@@ -16,13 +16,13 @@ class BinaryTranscoderTest extends \PHPUnit\Framework\TestCase {
     public function transcodingProvider()
     {
         return [
-            [bindec('1000'), ['key1' => false, 'key2' => false, 'key3' => false]],
-            [bindec('1100'), ['key1' => true, 'key2' => false, 'key3' => false]],
-            [bindec('1010'), ['key1' => false, 'key2' => true, 'key3' => false]],
-            [bindec('1001'), ['key1' => false, 'key2' => false, 'key3' => true]],
-            [bindec('1110'), ['key1' => true, 'key2' => true, 'key3' => false]],
-            [bindec('1011'), ['key1' => false, 'key2' => true, 'key3' => true]],
-            [bindec('1111'), ['key1' => true, 'key2' => true, 'key3' => true]],
+            [ bindec('1000'), ['key1' => false, 'key2' => false, 'key3' => false] ],
+            [ bindec('1100'), ['key1' => true,  'key2' => false, 'key3' => false] ],
+            [ bindec('1010'), ['key1' => false, 'key2' => true,  'key3' => false] ],
+            [ bindec('1001'), ['key1' => false, 'key2' => false, 'key3' => true] ],
+            [ bindec('1110'), ['key1' => true,  'key2' => true,  'key3' => false] ],
+            [ bindec('1011'), ['key1' => false, 'key2' => true,  'key3' => true] ],
+            [ bindec('1111'), ['key1' => true,  'key2' => true,  'key3' => true] ],
         ];
     }
 
@@ -35,14 +35,14 @@ class BinaryTranscoderTest extends \PHPUnit\Framework\TestCase {
     public function forwardTranscodingFalsePadProvider()
     {
         return [
-            [bindec('1000'), ['key1' => false, 'key2' => false, 'key3' => false, 'key4' => false]],
-            [bindec('1100'), ['key1' => true, 'key2' => false, 'key3' => false, 'key4' => false]],
-            [bindec('1010'), ['key1' => false, 'key2' => true, 'key3' => false, 'key4' => false]],
-            [bindec('1001'), ['key1' => false, 'key2' => false, 'key3' => true, 'key4' => false]],
-            [bindec('1110'), ['key1' => true, 'key2' => true, 'key3' => false, 'key4' => false]],
-            [bindec('1011'), ['key1' => false, 'key2' => true, 'key3' => true, 'key4' => false]],
-            [bindec('1111'), ['key1' => true, 'key2' => true, 'key3' => true, 'key4' => false]],
-            [bindec('1111'), ['key1' => true, 'key2' => true, 'key3' => true, 'key4' => false, 'key5' => false, 'key6' => false]],
+            [ bindec('1000'), ['key1' => false, 'key2' => false, 'key3' => false, 'key4' => false] ],
+            [ bindec('1100'), ['key1' => true,  'key2' => false, 'key3' => false, 'key4' => false] ],
+            [ bindec('1010'), ['key1' => false, 'key2' => true,  'key3' => false, 'key4' => false] ],
+            [ bindec('1001'), ['key1' => false, 'key2' => false, 'key3' => true,  'key4' => false] ],
+            [ bindec('1110'), ['key1' => true,  'key2' => true,  'key3' => false, 'key4' => false] ],
+            [ bindec('1011'), ['key1' => false, 'key2' => true,  'key3' => true,  'key4' => false] ],
+            [ bindec('1111'), ['key1' => true,  'key2' => true,  'key3' => true,  'key4' => false] ],
+            [ bindec('1111'), ['key1' => true,  'key2' => true,  'key3' => true,  'key4' => false, 'key5' => false, 'key6' => false] ],
         ];
     }
 
@@ -55,14 +55,14 @@ class BinaryTranscoderTest extends \PHPUnit\Framework\TestCase {
     public function forwardTranscodingTruePadProvider()
     {
         return [
-            [bindec('1000'), ['key1' => false, 'key2' => false, 'key3' => false, 'key4' => true]],
-            [bindec('1100'), ['key1' => true, 'key2' => false, 'key3' => false, 'key4' => true]],
-            [bindec('1010'), ['key1' => false, 'key2' => true, 'key3' => false, 'key4' => true]],
-            [bindec('1001'), ['key1' => false, 'key2' => false, 'key3' => true, 'key4' => true]],
-            [bindec('1110'), ['key1' => true, 'key2' => true, 'key3' => false, 'key4' => true]],
-            [bindec('1011'), ['key1' => false, 'key2' => true, 'key3' => true, 'key4' => true]],
-            [bindec('1111'), ['key1' => true, 'key2' => true, 'key3' => true, 'key4' => true]],
-            [bindec('1111'), ['key1' => true, 'key2' => true, 'key3' => true, 'key4' => true, 'key5' => true, 'key6' => true]],
+            [ bindec('1000'), ['key1' => false, 'key2' => false, 'key3' => false, 'key4' => true] ],
+            [ bindec('1100'), ['key1' => true,  'key2' => false, 'key3' => false, 'key4' => true] ],
+            [ bindec('1010'), ['key1' => false, 'key2' => true,  'key3' => false, 'key4' => true] ],
+            [ bindec('1001'), ['key1' => false, 'key2' => false, 'key3' => true,  'key4' => true] ],
+            [ bindec('1110'), ['key1' => true,  'key2' => true,  'key3' => false, 'key4' => true] ],
+            [ bindec('1011'), ['key1' => false, 'key2' => true,  'key3' => true,  'key4' => true] ],
+            [ bindec('1111'), ['key1' => true,  'key2' => true,  'key3' => true,  'key4' => true] ],
+            [ bindec('1111'), ['key1' => true,  'key2' => true,  'key3' => true,  'key4' => true, 'key5' => true, 'key6' => true] ],
         ];
     }
 
@@ -122,7 +122,7 @@ class BinaryTranscoderTest extends \PHPUnit\Framework\TestCase {
      * @covers       \ryanwhowe\BinaryTranscoder::determineMaxArrayLength()
      * @param $expected_encode_int
      * @param $test_array
-     * @throws Exception
+     * @throws \Exception
      */
     public function encoding($expected_encode_int, $test_array)
     {
@@ -160,6 +160,7 @@ class BinaryTranscoderTest extends \PHPUnit\Framework\TestCase {
      * @param $test_array
      * @expectedException \ryanwhowe\BinaryTranscoderException
      * @expectedExceptionMessage The source array has a different length than the output string!
+     * @throws Exception
      */
     public function itemCountMissMatchEncoder($expected_encode_int, $test_array)
     {
@@ -172,7 +173,7 @@ class BinaryTranscoderTest extends \PHPUnit\Framework\TestCase {
      * @test
      * @dataProvider             transcodingProvider
      * @dataProvider             forwardTranscodingFalsePadProvider
-     * @expectedException \Exception
+     * @expectedException \ryanwhowe\BinaryTranscoderException
      * @expectedExceptionMessage The passed string does not have enough elements for the key array
      * @covers                   \ryanwhowe\BinaryTranscoder::decodeInteger()
      * @covers                   \ryanwhowe\BinaryTranscoder::__construct
@@ -181,7 +182,7 @@ class BinaryTranscoderTest extends \PHPUnit\Framework\TestCase {
      * @covers                   \ryanwhowe\BinaryTranscoder::determineMaxArrayLength
      * @param $encoded_int
      * @param $expected_decode
-     * @throws \ryanwhowe\BinaryTranscoderException
+     * @throws \Exception
      */
     public function itemCountMissMatchDecoder($encoded_int, $expected_decode)
     {

@@ -157,15 +157,13 @@ class BinaryTranscoder {
      */
     private function convertStringToArray($source_string)
     {
-        $result = array();
         $key_array = $this->key_array;
         $value_array = str_split($source_string);
+        array_walk($value_array, function(&$item){ $item = (bool)$item; } );
         if (count($key_array) !== count($value_array)) {
             throw new BinaryTranscoderException('The passed string does not have enough elements for the key array');
         }
-        foreach ($key_array as $key => $item) {
-            $result[$item] = (bool)$value_array[$key];
-        }
+        $result = array_combine($key_array, $value_array);
         return $result;
     }
 
