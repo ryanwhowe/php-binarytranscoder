@@ -59,6 +59,37 @@ value for that key.  This behavior can be altered to default to true when instan
 $transcoder = new \ryanwhowe\BinaryTranscoder($array_keys, \ryanwhowe\BinaryTranscoder::BOOLEAN_PAD_TRUE);
 ```
 
+## Advanced Usage
+### Max Int
+The class will check the system **PHP_MAX_INT** size when instantiated.  This is through the static method 
+_determineMaxArrayLength()_ which accepts an optional integer parameter to allow you to determine the columns that can be
+encoded from a source array.  This utility function can be used with the documented limits of a particular database 
+storage type to ensure you are not exceeding you encoding abilities.  In general you will always have 1 fewer storage 
+positions than you have bits in the integer that is being encoded (see [methodology](#methodology) for more detail).
+
+#### Warning
+Regardless of the storage size limitations you can not exceed your systems **PHP_MAX_INT** size!
+
+#### example
+```php
+$mysql_small_unsigned_int_max = 65535;
+$max_columns = \ryanwhowe\BinaryTranscoder::determineMaxArrayLength($mysql_small_unsigned_int_max);
+var_dump($max_columns);
+```
+output
+```text
+int(15)
+```
+
+## Methodology
+The information is translated from a boolean array to a binary string converting true values to 1 and false values to 0.
+In order to ensure the decoding process there is an additional most significant bit added to the beginning of the binary 
+string.
+````text
+[false, false, true, false] would become 10010 NOT 0010
+````
+This creates a minimum value that will be stored, even for a completely false set of array values, which will be a 
+constant for the count of the array being used.
 
 ## Future 
 Here are some additional plans that I am working on any may appear in future releases.
