@@ -11,8 +11,8 @@ mind that it is stored in a form that make direct querying very difficult.  For 
 permissions as an integer, it would be difficult to directly query the database for a list of users who have a given 
 permission 'X' .
 
-# Basic Usage
-## Encoding
+## Basic Usage
+### Encoding
 To encoding an array is to transform the representation of the array of boolean values to an integer representation for storage.
 ```php
 $raw_array = array(
@@ -29,7 +29,7 @@ output
 ```text
 int(13)
 ```
-## Decoding
+### Decoding
 decoding a value back to an array
 ```php
 $output_array_key_values = array(
@@ -52,19 +52,21 @@ array(3) {
   'value 3' => bool(true)
 }
 ```
-# Padding
-The default behavior of the transcoder is to have any newly added array key default to null if there was no encoded 
+### Padding
+The default behavior of the transcoder is to have any newly added array key default to false if there was no encoded 
 value for that key.  This behavior can be altered to default to true when instantiating the object
 ```php
 $transcoder = new \ryanwhowe\BinaryTranscoder($array_keys, \ryanwhowe\BinaryTranscoder::BOOLEAN_PAD_TRUE);
 ```
 
 
-# Future 
+## Future 
 Here are some additional plans that I am working on any may appear in future releases.
-## todo
+### todo
 - [ ] Additional testing for instantiation
 - [ ] Complete documentation on class methods
 - [ ] Workout bitwise operations to make searches easier
 - [ ] Additional test cases
 - [ ] Explore converting this package to a php extension
+- [ ] Allow for null values when new key items have been added
+- [ ] Allow for an option to allow fewer keys than boolean values to be decoded
