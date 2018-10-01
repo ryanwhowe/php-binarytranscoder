@@ -21,17 +21,18 @@ namespace ryanwhowe;
  * @since 2018-09-29
  * @package ryanwhowe/php-binarytranscoder
  */
-class BinaryTranscoder {
+class BinaryTranscoder
+{
 
     /**
      * Pad the unmapped key values to false
      */
-    CONST BOOLEAN_PAD_FALSE = false;
+    const BOOLEAN_PAD_FALSE = false;
 
     /**
      * Pad the unmapped key values to true
      */
-    CONST BOOLEAN_PAD_TRUE = true;
+    const BOOLEAN_PAD_TRUE = true;
 
     /**
      * @var array The array of ordered keys that will be associated with the binary output
@@ -44,7 +45,8 @@ class BinaryTranscoder {
     private $array_length;
 
     /**
-     * @var boolean Determines if the backwards compatibility is to pad new entries defaulted to true or to false, default to false
+     * @var boolean Determines if the backwards compatibility is to pad new entries defaulted to true or to false,
+     * default to false
      */
     private $pad_boolean;
 
@@ -61,8 +63,9 @@ class BinaryTranscoder {
         $this->key_array = $key_array;
         $count = count($this->key_array);
         $max_count = self::determineMaxArrayLength();
-        if($count > $max_count){
-            throw new BinaryTranscoderException("The maximum amount of array field that can be transcoded is {$max_count}");
+        if ($count > $max_count) {
+            throw new BinaryTranscoderException("The maximum amount of array field that can be transcoded is 
+            {$max_count}");
         }
         $this->array_length = $count;
         $this->pad_boolean = (boolean)$pad_boolean;
@@ -86,9 +89,10 @@ class BinaryTranscoder {
      * Return the protected integer representation of the passed array
      *
      * @return integer
+     * @param array $array_values
      * @throws \Exception when the passed array of values is of different length than the instantiated key array
      */
-    public function encodeArray($array_values)
+    public function encodeArray(array $array_values)
     {
         $result = $this->convertBinToProtectedInt($this->convertArrayToString($array_values));
         return $result;
@@ -140,7 +144,12 @@ class BinaryTranscoder {
      */
     private function convertArrayToString($array_values)
     {
-        array_walk($array_values, function(&$item){ $item = ($item) ? '1' : '0'; });
+        array_walk(
+            $array_values,
+            function (&$item) {
+                $item = ($item) ? '1' : '0';
+            }
+        );
         $result =  \implode($array_values);
         if ($this->array_length != strlen($result)) {
             throw new BinaryTranscoderException('The source array has a different length than the output string!');
@@ -159,7 +168,12 @@ class BinaryTranscoder {
     {
         $key_array = $this->key_array;
         $value_array = str_split($source_string);
-        array_walk($value_array, function(&$item){ $item = (bool)$item; } );
+        array_walk(
+            $value_array,
+            function (&$item) {
+                $item = (bool)$item;
+            }
+        );
         if (count($key_array) !== count($value_array)) {
             throw new BinaryTranscoderException('The passed string does not have enough elements for the key array');
         }
@@ -176,7 +190,8 @@ class BinaryTranscoder {
      * @param int $int_max
      * @return int
      */
-    public static function determineMaxArrayLength($int_max = PHP_INT_MAX){
+    public static function determineMaxArrayLength($int_max = PHP_INT_MAX)
+    {
         return strlen(decbin($int_max)) - 1;
     }
 }
