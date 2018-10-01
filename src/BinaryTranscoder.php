@@ -140,11 +140,8 @@ class BinaryTranscoder {
      */
     private function convertArrayToString($array_values)
     {
-        $result = '';
-
-        foreach ($array_values as $item) {
-            $result .= ($item) ? '1' : '0';
-        }
+        array_walk($array_values, function(&$item){ $item = ($item) ? '1' : '0'; });
+        $result =  \implode($array_values);
         if ($this->array_length != strlen($result)) {
             throw new BinaryTranscoderException('The source array has a different length than the output string!');
         }
