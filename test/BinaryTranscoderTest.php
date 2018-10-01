@@ -6,7 +6,10 @@
  * @since  2018-09-29
  */
 
-class BinaryTranscoderTest extends \PHPUnit\Framework\TestCase {
+namespace Test;
+
+class BinaryTranscoderTest extends \PHPUnit\Framework\TestCase
+{
 
     /**
      * A dataProvider that has data in the form of $encodedValue, $expectedDecodedValue
@@ -42,7 +45,10 @@ class BinaryTranscoderTest extends \PHPUnit\Framework\TestCase {
             [ bindec('1110'), ['key1' => true,  'key2' => true,  'key3' => false, 'key4' => false] ],
             [ bindec('1011'), ['key1' => false, 'key2' => true,  'key3' => true,  'key4' => false] ],
             [ bindec('1111'), ['key1' => true,  'key2' => true,  'key3' => true,  'key4' => false] ],
-            [ bindec('1111'), ['key1' => true,  'key2' => true,  'key3' => true,  'key4' => false, 'key5' => false, 'key6' => false] ],
+            [
+                bindec('1111'),
+                ['key1' => true,  'key2' => true,  'key3' => true,  'key4' => false, 'key5' => false, 'key6' => false]
+            ],
         ];
     }
 
@@ -62,7 +68,10 @@ class BinaryTranscoderTest extends \PHPUnit\Framework\TestCase {
             [ bindec('1110'), ['key1' => true,  'key2' => true,  'key3' => false, 'key4' => true] ],
             [ bindec('1011'), ['key1' => false, 'key2' => true,  'key3' => true,  'key4' => true] ],
             [ bindec('1111'), ['key1' => true,  'key2' => true,  'key3' => true,  'key4' => true] ],
-            [ bindec('1111'), ['key1' => true,  'key2' => true,  'key3' => true,  'key4' => true, 'key5' => true, 'key6' => true] ],
+            [
+                bindec('1111'),
+                ['key1' => true,  'key2' => true,  'key3' => true,  'key4' => true, 'key5' => true, 'key6' => true]
+            ],
         ];
     }
 
@@ -77,13 +86,13 @@ class BinaryTranscoderTest extends \PHPUnit\Framework\TestCase {
      * @covers       \ryanwhowe\BinaryTranscoder::convertProtectedIntToBin()
      * @param $encoded_int
      * @param $expected_decode
-     * @throws Exception
+     * @throws \Exception
      */
     public function decodingFalsePad($encoded_int, $expected_decode)
     {
 
         $key_array = array_keys($expected_decode);
-        $tr = new ryanwhowe\BinaryTranscoder($key_array);
+        $tr = new \ryanwhowe\BinaryTranscoder($key_array);
         $decode = $tr->decodeInteger($encoded_int);
 
         $this->assertEquals($expected_decode, $decode);
@@ -100,13 +109,13 @@ class BinaryTranscoderTest extends \PHPUnit\Framework\TestCase {
      * @covers       \ryanwhowe\BinaryTranscoder::determineMaxArrayLength()
      * @param $encoded_int
      * @param $expected_decode
-     * @throws Exception
+     * @throws \Exception
      */
     public function decodingTruePad($encoded_int, $expected_decode)
     {
 
         $key_array = array_keys($expected_decode);
-        $tr = new ryanwhowe\BinaryTranscoder($key_array, true);
+        $tr = new \ryanwhowe\BinaryTranscoder($key_array, true);
         $decode = $tr->decodeInteger($encoded_int);
 
         $this->assertEquals($expected_decode, $decode);
@@ -127,7 +136,7 @@ class BinaryTranscoderTest extends \PHPUnit\Framework\TestCase {
     public function encoding($expected_encode_int, $test_array)
     {
 
-        $tr = new ryanwhowe\BinaryTranscoder($test_array);
+        $tr = new \ryanwhowe\BinaryTranscoder($test_array);
         $encoded = $tr->encodeArray($test_array);
 
         $this->assertEquals($expected_encode_int, $encoded);
@@ -161,11 +170,11 @@ class BinaryTranscoderTest extends \PHPUnit\Framework\TestCase {
      * @param $test_array
      * @expectedException \ryanwhowe\BinaryTranscoderException
      * @expectedExceptionMessage The source array has a different length than the output string!
-     * @throws Exception
+     * @throws \Exception
      */
     public function itemCountMissMatchEncoder($expected_encode_int, $test_array)
     {
-        $tr = new ryanwhowe\BinaryTranscoder($test_array);
+        $tr = new \ryanwhowe\BinaryTranscoder($test_array);
         array_push($test_array, array('key_z' => false));
         $tr->encodeArray($test_array);
     }
@@ -188,7 +197,7 @@ class BinaryTranscoderTest extends \PHPUnit\Framework\TestCase {
     public function itemCountMissMatchDecoder($encoded_int, $expected_decode)
     {
         $key_array = array_keys($expected_decode);
-        $tr = new ryanwhowe\BinaryTranscoder($key_array);
+        $tr = new \ryanwhowe\BinaryTranscoder($key_array);
         $failure_decode = bindec(str_pad('1', count($key_array) + 2, '0', STR_PAD_RIGHT));
         $decode = $tr->decodeInteger($failure_decode);
         $this->assertEquals($expected_decode, $decode);

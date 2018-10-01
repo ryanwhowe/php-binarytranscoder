@@ -8,7 +8,7 @@
 
 namespace ryanwhowe;
 
-
-class BinaryTranscoderException extends \Exception {
+class BinaryTranscoderException extends \Exception
+{
 
 }
