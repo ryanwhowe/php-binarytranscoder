@@ -1,6 +1,6 @@
 {
     "name": "ryanwhowe/php-binarytranscoder",
-    "description": "Encode and decode integers into binary arrays in a backwards compatible mannor",
+    "description": "Encode and decode integers into binary arrays in a backwards compatible manner",
     "type": "library",
     "require-dev": {
         "phpunit/phpunit": "~5.7"
