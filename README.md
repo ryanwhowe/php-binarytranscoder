@@ -89,7 +89,7 @@ string.
 [false, false, true, false] would become 10010 NOT 0010
 ````
 This creates a minimum value that will be stored, even for a completely false set of array values, which will be a 
-constant for the count of the array being used.
+constant for the count of the array being used.  This also provides a "versioning" of the stored integer value.
 
 ## Future 
 Here are some additional plans that I am working on any may appear in future releases.
@@ -100,4 +100,5 @@ Here are some additional plans that I am working on any may appear in future rel
 - [ ] Additional test cases
 - [ ] Explore converting this package to a php extension
 - [ ] Allow for null values when new key items have been added
-- [ ] Allow for an option to allow fewer keys than boolean values to be decoded
+- [ ] Allow for an option to allow fewer keys than boolean values to be decoded, just dump the values for the missing 
+array keys
