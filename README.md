@@ -21,7 +21,7 @@ $raw_array = array(
     'value 3' => true
 );
 
-$transcoder = new \ryanwhowe\BinaryTranscoder(array_keys($raw_array));
+$transcoder = new \ryanwhowe\BinaryTranscoder($raw_array);
 $encoded_value = $transcoder->encodeArray($raw_array);
 var_dump($encoded_value);
 ```
@@ -99,6 +99,8 @@ Here are some additional plans that I am working on any may appear in future rel
 - [ ] Workout bitwise operations to make searches easier/possible/maybe :-/
 - [ ] Additional test cases
 - [ ] Explore converting this package to a php extension
+
+### Release 2.0.0 To Do
 - [ ] Allow for null values when new key items have been added
 - [ ] Allow for an option to allow fewer keys than boolean values to be decoded, just dump the values for the missing 
 array keys

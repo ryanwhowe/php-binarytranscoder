@@ -27,12 +27,17 @@ class BinaryTranscoder
     /**
      * Pad the unmapped key values to false
      */
-    const BOOLEAN_PAD_FALSE = false;
+    const BINARYTRANSCODER_PAD_FALSE = false;
 
     /**
      * Pad the unmapped key values to true
      */
-    const BOOLEAN_PAD_TRUE = true;
+    const BINARYTRANSCODER_PAD_TRUE = true;
+
+    /**
+     * Pad the unmapped key values to null
+     */
+    const BINARYTRANSCODER_PAD_NULL = null;
 
     /**
      * @var array The array of ordered keys that will be associated with the binary output
@@ -57,10 +62,10 @@ class BinaryTranscoder
      * @param boolean $pad_boolean  The default backwards compatibility value when new array elements are added
      * @throws \Exception if more array elements than what can be transcoded are passes to the constructor
      */
-    public function __construct(array $key_array, $pad_boolean = self::BOOLEAN_PAD_FALSE)
+    public function __construct(array $key_array, $pad_boolean = self::BINARYTRANSCODER_PAD_FALSE)
     {
+        $this->key_array = $this->getKeyArray($key_array);
 
-        $this->key_array = $key_array;
         $count = count($this->key_array);
         $max_count = self::determineMaxArrayLength();
         if ($count > $max_count) {
@@ -68,7 +73,25 @@ class BinaryTranscoder
             {$max_count}");
         }
         $this->array_length = $count;
-        $this->pad_boolean = (boolean)$pad_boolean;
+        if (\null === $pad_boolean) {
+            $this->pad_boolean = \null;
+        } else {
+            $this->pad_boolean = (boolean)$pad_boolean;
+        }
+    }
+
+    private function getKeyArray(array $array)
+    {
+        if ($this->hasStringKeys($array)) {
+            return array_keys($array);
+        } else {
+            return $array;
+        }
+    }
+
+    private function hasStringKeys(array $array)
+    {
+        return count(array_filter(array_keys($array), 'is_string')) > 0;
     }
 
     /**
@@ -111,9 +134,12 @@ class BinaryTranscoder
     {
         $result = decbin($source_int);
         $result = substr($result, 1, strlen($result));
-        $pad_string = ($this->pad_boolean) ? '1' : '0';
-        $result = str_pad($result, $this->array_length, $pad_string, STR_PAD_RIGHT);
-        return $result;
+        if (\null === $this->pad_boolean) {
+            return $result;
+        } else {
+            $pad_string = ($this->pad_boolean) ? '1' : '0';
+            return str_pad($result, $this->array_length, $pad_string, STR_PAD_RIGHT);
+        }
     }
 
     /**
@@ -174,8 +200,22 @@ class BinaryTranscoder
                 $item = (bool)$item;
             }
         );
+        if (count($key_array) < count($value_array)) {
+            throw new BinaryTranscoderException(
+                'The key array does not have enough elements for the decoded integer'
+            );
+        }
+        //WD:RWH - 2018-10-09: this is where the trimming of the value array will be needed to match the key array
+        if (null === $this->pad_boolean) {
+            $value_array = \array_merge(
+                $value_array,
+                array_fill(count($value_array), count($key_array)-count($value_array), \null)
+            );
+        }
         if (count($key_array) !== count($value_array)) {
-            throw new BinaryTranscoderException('The passed string does not have enough elements for the key array');
+            throw new BinaryTranscoderException(
+                'The passed string does not have enough elements for the key array'
+            );
         }
         $result = array_combine($key_array, $value_array);
         return $result;
