@@ -21,7 +21,7 @@ $raw_array = array(
     'value 3' => true
 );
 
-$transcoder = new \ryanwhowe\BinaryTranscoder(array_keys($raw_array));
+$transcoder = new \ryanwhowe\BinaryTranscoder($raw_array);
 $encoded_value = $transcoder->encodeArray($raw_array);
 var_dump($encoded_value);
 ```

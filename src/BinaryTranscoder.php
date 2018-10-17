@@ -59,8 +59,8 @@ class BinaryTranscoder
      */
     public function __construct(array $key_array, $pad_boolean = self::BOOLEAN_PAD_FALSE)
     {
+        $this->key_array = $this->getKeyArray($key_array);
 
-        $this->key_array = $key_array;
         $count = count($this->key_array);
         $max_count = self::determineMaxArrayLength();
         if ($count > $max_count) {
@@ -69,6 +69,34 @@ class BinaryTranscoder
         }
         $this->array_length = $count;
         $this->pad_boolean = (boolean)$pad_boolean;
+    }
+
+    /**
+     * Check to see if the passed array is made up of an associative array or not.  If the array is associative we will
+     * use the key values from this array for generating any decoded values.  If it is not associative we will assume
+     * that this is an array in which the passed values are the keys desired for the output.
+     *
+     * @param array $array
+     * @return array
+     */
+    private function getKeyArray(array $array)
+    {
+        if ($this->hasStringKeys($array)) {
+            return array_keys($array);
+        } else {
+            return $array;
+        }
+    }
+
+    /**
+     * Check the array to see if the array has any string keys associated with it
+     *
+     * @param array $array
+     * @return bool
+     */
+    private function hasStringKeys(array $array)
+    {
+        return count(array_filter(array_keys($array), 'is_string')) > 0;
     }
 
     /**
