@@ -1,4 +1,7 @@
 # php-binarytranscoder
+
+[![GitHub release](https://img.shields.io/github/release/ryanwhowe/php-binarytranscoder.svg)](https://github.com/ryanwhowe/php-binarytranscoder)
+
 Convert integer values to binary arrays in a backwards compatible safe method
 
 While that might sound like a lot it is simply storing a php array of boolean values in an integer.  This integer can be
