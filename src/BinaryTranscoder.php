@@ -202,7 +202,7 @@ class BinaryTranscoder
      *
      * @param $source_string string The binary source string to convert
      * @return array
-     * @throws \Exception when the string length does not match the array length
+     * @throws BinaryTranscoderException when the string length does not match the array length
      */
     private function convertStringToArray($source_string)
     {

@@ -1,1 +1,3 @@
 * BinaryTranscoder::__construct now throws a BinaryTranscoderMaxLengthException when the number of elements that can be trasncoded exceeds the system amount available in an integer.
+* BinaryTranscoder.decodeInteger() will now throw \ryanwhowe\BinaryTranscoderException when the passed integer is to small or two large for the key array used on instanciation.
+* BinaryTranscoder.encodeArray() will now throw \ryanwhowe\BinaryTranscoderException when the passed array is of different length than the key array used on instanciation.
