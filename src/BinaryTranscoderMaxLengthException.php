@@ -8,7 +8,6 @@
 
 namespace ryanwhowe;
 
-
-class BinaryTranscoderMaxLengthException extends \Exception
+class BinaryTranscoderMaxLengthException extends BinaryTranscoderException
 {
 }

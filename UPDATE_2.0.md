@@ -1,0 +1,1 @@
+* BrinaryTranscoder::__contructor() will now throw \ryanwhowe\BinaryTranscoderMaxLengthException on instanciation when the max array lenght exceeds the system MAX_INT_LENGTH instead of the general Exception it had thrown previously.  The BinaryTranscoderMaxLengthException is an extension of the base Exception and will be caught by a general Exception handler.

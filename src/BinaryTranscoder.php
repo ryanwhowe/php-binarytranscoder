@@ -2,9 +2,11 @@
 /**
  * This file contains the code for the BinaryTrascoder Class
  *
+ * PHP 5.3.0
+ * 
  * @since 2018-09-28
  * @author Ryan Howe
- * @version 1.0.0
+ * @version 2.0.0
  */
 
 namespace ryanwhowe;
@@ -80,15 +82,27 @@ class BinaryTranscoder
         }
     }
 
-    private function getKeyArray(array $array)
+    /**
+     * Get the Keys from the passed array unless this is a array of keys itself
+     * 
+     * @param array $keyArray 
+     * @return array
+     */
+    private function getKeyArray(array $keyArray)
     {
-        if ($this->hasStringKeys($array)) {
-            return array_keys($array);
+        if ($this->hasStringKeys($keyArray)) {
+            return array_keys($keyArray);
         } else {
-            return $array;
+            return $keyArray;
         }
     }
 
+    /**
+     * Determin if this array has string keys or not, if the keys are integers it is assumed that a array_keys() array was passed
+     * 
+     * @param array $array The input array to check the keys of to see if they are strings
+     * @return bool
+     */
     private function hasStringKeys(array $array)
     {
         return count(array_filter(array_keys($array), 'is_string')) > 0;
@@ -99,7 +113,7 @@ class BinaryTranscoder
      *
      * @param $integer
      * @return array
-     * @throws \Exception when the decoded integer does not match the array length generated
+     * @throws BinaryTranscoderException when the decoded integer does not match the array length generated
      */
     public function decodeInteger($integer)
     {
@@ -113,7 +127,7 @@ class BinaryTranscoder
      *
      * @return integer
      * @param array $array_values
-     * @throws \Exception when the passed array of values is of different length than the instantiated key array
+     * @throws BinaryTranscoderException when the passed array of values is of different length than the instantiated key array
      */
     public function encodeArray(array $array_values)
     {
@@ -166,7 +180,7 @@ class BinaryTranscoder
      *
      * @param $array_values array The array of values to be converted to a binary string
      * @return string binary representation of the passed boolean array
-     * @throws \Exception when the passed array of values is of different length than the instantiated key array
+     * @throws BinaryTranscoderException when the passed array of values is of different length than the instantiated key array
      */
     private function convertArrayToString($array_values)
     {
