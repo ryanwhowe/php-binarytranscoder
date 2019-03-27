@@ -208,7 +208,7 @@ class BinaryTranscoderTest extends \PHPUnit\Framework\TestCase
 
     /**
      * @test
-     * @expectedException \ryanwhowe\BinaryTranscoderException
+     * @expectedException \ryanwhowe\BinaryTranscoderMaxLengthException
      * @covers \ryanwhowe\BinaryTranscoder::__construct()
      * @covers \ryanwhowe\BinaryTranscoder::determineMaxArrayLength
      * @throws \Exception

@@ -10,5 +10,4 @@ namespace ryanwhowe;
 
 class BinaryTranscoderException extends \Exception
 {
-
 }
