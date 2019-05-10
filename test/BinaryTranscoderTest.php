@@ -20,13 +20,13 @@ class BinaryTranscoderTest extends \PHPUnit\Framework\TestCase
     public function transcodingProvider()
     {
         return [
-            [ bindec('1000'), ['key1' => false, 'key2' => false, 'key3' => false] ],
-            [ bindec('1100'), ['key1' => true,  'key2' => false, 'key3' => false] ],
-            [ bindec('1010'), ['key1' => false, 'key2' => true,  'key3' => false] ],
-            [ bindec('1001'), ['key1' => false, 'key2' => false, 'key3' => true] ],
-            [ bindec('1110'), ['key1' => true,  'key2' => true,  'key3' => false] ],
-            [ bindec('1011'), ['key1' => false, 'key2' => true,  'key3' => true] ],
-            [ bindec('1111'), ['key1' => true,  'key2' => true,  'key3' => true] ],
+            [ bindec('1 000'), ['key1' => false, 'key2' => false, 'key3' => false] ],
+            [ bindec('1 001'), ['key1' => true,  'key2' => false, 'key3' => false] ],
+            [ bindec('1 010'), ['key1' => false, 'key2' => true,  'key3' => false] ],
+            [ bindec('1 100'), ['key1' => false, 'key2' => false, 'key3' => true] ],
+            [ bindec('1 011'), ['key1' => true,  'key2' => true,  'key3' => false] ],
+            [ bindec('1 110'), ['key1' => false, 'key2' => true,  'key3' => true] ],
+            [ bindec('1 111'), ['key1' => true,  'key2' => true,  'key3' => true] ],
         ];
     }
 
@@ -39,13 +39,13 @@ class BinaryTranscoderTest extends \PHPUnit\Framework\TestCase
     public function forwardTranscodingFalsePadProvider()
     {
         return [
-            [ bindec('1000'), ['key1' => false, 'key2' => false, 'key3' => false, 'key4' => false] ],
-            [ bindec('1100'), ['key1' => true,  'key2' => false, 'key3' => false, 'key4' => false] ],
-            [ bindec('1010'), ['key1' => false, 'key2' => true,  'key3' => false, 'key4' => false] ],
-            [ bindec('1001'), ['key1' => false, 'key2' => false, 'key3' => true,  'key4' => false] ],
-            [ bindec('1110'), ['key1' => true,  'key2' => true,  'key3' => false, 'key4' => false] ],
-            [ bindec('1011'), ['key1' => false, 'key2' => true,  'key3' => true,  'key4' => false] ],
-            [ bindec('1111'), ['key1' => true,  'key2' => true,  'key3' => true,  'key4' => false] ],
+            [ bindec('1 000'), ['key1' => false, 'key2' => false, 'key3' => false, 'key4' => false] ],
+            [ bindec('1 001'), ['key1' => true,  'key2' => false, 'key3' => false, 'key4' => false] ],
+            [ bindec('1 010'), ['key1' => false, 'key2' => true,  'key3' => false, 'key4' => false] ],
+            [ bindec('1 100'), ['key1' => false, 'key2' => false, 'key3' => true,  'key4' => false] ],
+            [ bindec('1 011'), ['key1' => true,  'key2' => true,  'key3' => false, 'key4' => false] ],
+            [ bindec('1 110'), ['key1' => false, 'key2' => true,  'key3' => true,  'key4' => false] ],
+            [ bindec('1 111'), ['key1' => true,  'key2' => true,  'key3' => true,  'key4' => false] ],
             [
                 bindec('1111'),
                 ['key1' => true,  'key2' => true,  'key3' => true,  'key4' => false, 'key5' => false, 'key6' => false]
@@ -62,13 +62,13 @@ class BinaryTranscoderTest extends \PHPUnit\Framework\TestCase
     public function forwardTranscodingTruePadProvider()
     {
         return [
-            [ bindec('1000'), ['key1' => false, 'key2' => false, 'key3' => false, 'key4' => true] ],
-            [ bindec('1100'), ['key1' => true,  'key2' => false, 'key3' => false, 'key4' => true] ],
-            [ bindec('1010'), ['key1' => false, 'key2' => true,  'key3' => false, 'key4' => true] ],
-            [ bindec('1001'), ['key1' => false, 'key2' => false, 'key3' => true,  'key4' => true] ],
-            [ bindec('1110'), ['key1' => true,  'key2' => true,  'key3' => false, 'key4' => true] ],
-            [ bindec('1011'), ['key1' => false, 'key2' => true,  'key3' => true,  'key4' => true] ],
-            [ bindec('1111'), ['key1' => true,  'key2' => true,  'key3' => true,  'key4' => true] ],
+            [ bindec('1 000'), ['key1' => false, 'key2' => false, 'key3' => false, 'key4' => true] ],
+            [ bindec('1 001'), ['key1' => true,  'key2' => false, 'key3' => false, 'key4' => true] ],
+            [ bindec('1 010'), ['key1' => false, 'key2' => true,  'key3' => false, 'key4' => true] ],
+            [ bindec('1 100'), ['key1' => false, 'key2' => false, 'key3' => true,  'key4' => true] ],
+            [ bindec('1 011'), ['key1' => true,  'key2' => true,  'key3' => false, 'key4' => true] ],
+            [ bindec('1 110'), ['key1' => false, 'key2' => true,  'key3' => true,  'key4' => true] ],
+            [ bindec('1 111'), ['key1' => true,  'key2' => true,  'key3' => true,  'key4' => true] ],
             [
                 bindec('1111'),
                 ['key1' => true,  'key2' => true,  'key3' => true,  'key4' => true, 'key5' => true, 'key6' => true]
@@ -85,13 +85,13 @@ class BinaryTranscoderTest extends \PHPUnit\Framework\TestCase
     public function forwardTranscodingNullPadProvider()
     {
         return [
-            [ bindec('1000'), ['key1' => false, 'key2' => false, 'key3' => false, 'key4' => null] ],
-            [ bindec('1100'), ['key1' => true,  'key2' => false, 'key3' => false, 'key4' => null] ],
-            [ bindec('1010'), ['key1' => false, 'key2' => true,  'key3' => false, 'key4' => null] ],
-            [ bindec('1001'), ['key1' => false, 'key2' => false, 'key3' => true,  'key4' => null] ],
-            [ bindec('1110'), ['key1' => true,  'key2' => true,  'key3' => false, 'key4' => null] ],
-            [ bindec('1011'), ['key1' => false, 'key2' => true,  'key3' => true,  'key4' => null] ],
-            [ bindec('1111'), ['key1' => true,  'key2' => true,  'key3' => true,  'key4' => null] ],
+            [ bindec('1 000'), ['key1' => false, 'key2' => false, 'key3' => false, 'key4' => null] ],
+            [ bindec('1 001'), ['key1' => true,  'key2' => false, 'key3' => false, 'key4' => null] ],
+            [ bindec('1 010'), ['key1' => false, 'key2' => true,  'key3' => false, 'key4' => null] ],
+            [ bindec('1 100'), ['key1' => false, 'key2' => false, 'key3' => true,  'key4' => null] ],
+            [ bindec('1 011'), ['key1' => true,  'key2' => true,  'key3' => false, 'key4' => null] ],
+            [ bindec('1 110'), ['key1' => false, 'key2' => true,  'key3' => true,  'key4' => null] ],
+            [ bindec('1 111'), ['key1' => true,  'key2' => true,  'key3' => true,  'key4' => null] ],
             [
                 bindec('1111'),
                 ['key1' => true,  'key2' => true,  'key3' => true,  'key4' => null, 'key5' => null, 'key6' => null]
@@ -150,7 +150,7 @@ class BinaryTranscoderTest extends \PHPUnit\Framework\TestCase
                 $item = null;
             }
         );
-        $tr = new BinaryTranscoder($key_array, BinaryTranscoder::BINARYTRANSCODER_PAD_TRUE);
+        $tr = new BinaryTranscoder($key_array, PHP_INT_MAX, BinaryTranscoder::BINARYTRANSCODER_PAD_TRUE);
         $decode = $tr->decodeInteger($encoded_int);
 
         $this->assertEquals($expected_decode, $decode);
@@ -179,7 +179,7 @@ class BinaryTranscoderTest extends \PHPUnit\Framework\TestCase
                 $item = null;
             }
         );
-        $tr = new BinaryTranscoder($key_array, BinaryTranscoder::BINARYTRANSCODER_PAD_NULL);
+        $tr = new BinaryTranscoder($key_array, PHP_INT_MAX, BinaryTranscoder::BINARYTRANSCODER_PAD_NULL);
         $decode = $tr->decodeInteger($encoded_int);
 
         $this->assertEquals($expected_decode, $decode);
