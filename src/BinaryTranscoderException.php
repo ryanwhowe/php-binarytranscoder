@@ -1,4 +1,4 @@
-<?php
+<?php declare(strict_types=1);
 /**
  * This file contains the definition for the BinaryTranscoderException class
  *
@@ -10,5 +10,4 @@ namespace ryanwhowe;
 
 class BinaryTranscoderException extends \Exception
 {
-
 }

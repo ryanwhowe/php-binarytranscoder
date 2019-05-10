@@ -2,6 +2,13 @@
 
 [![GitHub release](https://img.shields.io/github/release/ryanwhowe/php-binarytranscoder.svg)](https://github.com/ryanwhowe/php-binarytranscoder)
 
+###WARNING!!!
+####This Is a Breaking Change from the v1 branch
+The encoder and decoder have been changed to reverse the binary string that transcoded from the input array.  This will 
+allow for bitwise searches of the encoded integer values in a backwards compatible way.  This will cause a breaking 
+change from the v1 branch if this is used to decode any integers encoded by the v1 package.  Any information encoded by
+the v1 package will need to be recoded.
+
 Convert integer values to binary arrays in a backwards compatible safe method
 
 While that might sound like a lot it is simply storing a php array of boolean values in an integer.  This integer can be
@@ -55,11 +62,19 @@ array(3) {
   'value 3' => bool(true)
 }
 ```
+
+### Max Integer Value (new v2.0)
+If storing the trancoded integer value an implementation may need to limit the maximum allowable integer value to 
+something other than the default PHP_INT_MAX value.  **Important:** you can **NOT** exceed the PHP_INT_MAX value as this 
+is a limitation of PHP.  The example below limits to an unsigned 32 bit integer value (the max for a MySQL UNSIGNED INT column)
+```php
+$transcoder = new \ryanwhowe\BinaryTranscoder($array_keys, 4294967295);
+```
 ### Padding
 The default behavior of the transcoder is to have any newly added array key default to false if there was no encoded 
-value for that key.  This behavior can be altered to default to true when instantiating the object
+value for that key.  This behavior can be altered to default to true when instantiating the object, or to null.
 ```php
-$transcoder = new \ryanwhowe\BinaryTranscoder($array_keys, \ryanwhowe\BinaryTranscoder::BOOLEAN_PAD_TRUE);
+$transcoder = new \ryanwhowe\BinaryTranscoder($array_keys, PHP_INT_MAX, \ryanwhowe\BinaryTranscoder::BOOLEAN_PAD_TRUE);
 ```
 
 ## Advanced Usage
