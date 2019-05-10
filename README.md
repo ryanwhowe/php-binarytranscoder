@@ -121,16 +121,3 @@ constant for the count of the array being used.  This also provides a "versionin
 
 The best use case for the class is to have it be a resource of another class that has control over the array that will 
 be encoded and decoded into.
-
-## Future 
-Here are some additional plans that I am working on any may appear in future releases.
-### todo
-- [X] Additional testing for instantiation
-- [X] Complete documentation on class methods
-- [X] Workout bitwise operations to make searches easier/possible/maybe :-/
-- [X] Additional test cases
-
-### Release 2.0.0 To Do
-- [X] Allow for null values when new key items have been added
-- [ ] Allow for an option to allow fewer keys than boolean values to be decoded, just dump the values for the missing 
-array keys
