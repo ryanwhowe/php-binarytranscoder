@@ -1,3 +1,9 @@
-* BrinaryTranscoder::__contructor() will now throw \ryanwhowe\BinaryTranscoderMaxLengthException on instanciation when the max array lenght exceeds the system MAX_INT_LENGTH instead of the general Exception it had thrown previously.  The BinaryTranscoderMaxLengthException is an extension of the base BinaryTranscoderException which will be caught by a general Exception handler.
-* BinaryTranscoder.decodeInteger() will now throw \ryanwhowe\BinaryTranscoderException when the passed integer is to small or two large for the key array used on instanciation.  The BinaryTranscoderException is an extension of the base \Excpetion class.
-* BinaryTranscoder.encodeArray() will now throw \ryanwhowe\BinaryTranscoderException when the passed array is of different length than the key array used on instanciation.  The BinaryTranscoderException is an extension of the base \Exception class.
+* Addded Custom Exception \ryanwhowe\BinaryTranscoderException
+* Addded Custom Exception \ryanwhowe\BinaryTranscoderMaxLengthException
+* Addded Custom Exception \ryanwhowe\BinaryTranscoderIntegerOverflowException
+* BinaryTranscoder::__construct now throws a \ryanwhowe\BinaryTranscoderMaxLengthException when the number of elements that can be trasncoded exceeds the system amount available in an integer.
+* BinaryTranscoder::__construct now throws a \ryanwhowe\BinaryTranscoderIntegerOverflowException when the maximum integer value parameter is set higher than PHP_INT_MAX.
+* BinaryTranscoder::__construct now takes an optional maximum integer value parameter.
+* BinaryTranscoder::__construct padding paramater has been moved to the third position after the maximum integer value parameter.
+* BinaryTranscoder.decodeInteger() will now throw \ryanwhowe\BinaryTranscoderException when the passed integer is to small or two large for the key array used on instantiation.
+* BinaryTranscoder.encodeArray() will now throw \ryanwhowe\BinaryTranscoderException when the passed array is of different length than the key array used on instantiation.
