@@ -1,9 +1,9 @@
-<?php
+<?php declare(strict_types=1);
 /**
- * Created by PhpStorm.
- * User: axe
- * Date: 2018-12-02
- * Time: 15:50
+ * This file contains the definition for the BinaryTranscoderMaxLengthException class
+ *
+ * @author Ryan Howe
+ * @since  2018-09-28
  */
 
 namespace ryanwhowe;
