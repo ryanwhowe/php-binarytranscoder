@@ -13,3 +13,5 @@ V2.0.0 ChangeLog
 * BinaryTranscoder.encodeArray() will now throw \ryanwhowe\BinaryTranscoderException when the passed array is of different length than the key array used on instantiation.
 * Implemented strict types for all methods
 * Updated tests for reverse encoding method
+* Namespace changed from ryanwhowe to RyanWHowe\BinaryTranscoder
+* Changed the package name from ryanwhowe/php-binarytranscoder to ryanwhowe/binarytranscoder

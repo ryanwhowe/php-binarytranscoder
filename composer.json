@@ -1,5 +1,5 @@
 {
-    "name": "ryanwhowe/php-binarytranscoder",
+    "name": "ryanwhowe/binarytranscoder",
     "description": "Encode and decode integers into binary arrays in a backwards compatible manner",
     "type": "library",
     "require-dev": {
@@ -7,7 +7,12 @@
     },
     "autoload":{
         "psr-4": {
-            "ryanwhowe\\" : "src"
+            "RyanWHowe\\BinaryTranscoder\\" : "src"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Test\\": "tests"
         }
     },
     "license": "MIT",

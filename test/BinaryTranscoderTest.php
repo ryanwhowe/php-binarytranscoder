@@ -7,7 +7,7 @@
  */
 namespace Test;
 
-use ryanwhowe\BinaryTranscoder;
+use RyanWHowe\BinaryTranscoder\BinaryTranscoder;
 
 class BinaryTranscoderTest extends \PHPUnit\Framework\TestCase
 {
@@ -103,11 +103,11 @@ class BinaryTranscoderTest extends \PHPUnit\Framework\TestCase
      * @test
      * @dataProvider transcodingProvider
      * @dataProvider forwardTranscodingFalsePadProvider
-     * @covers       \ryanwhowe\BinaryTranscoder::__construct()
-     * @covers       \ryanwhowe\BinaryTranscoder::decodeInteger()
-     * @covers       \ryanwhowe\BinaryTranscoder::convertStringToArray()
-     * @covers       \ryanwhowe\BinaryTranscoder::determineMaxArrayLength()
-     * @covers       \ryanwhowe\BinaryTranscoder::convertProtectedIntToBin()
+     * @covers       \RyanWHowe\BinaryTranscoder\BinaryTranscoder::__construct()
+     * @covers       \RyanWHowe\BinaryTranscoder\BinaryTranscoder::decodeInteger()
+     * @covers       \RyanWHowe\BinaryTranscoder\BinaryTranscoder::convertStringToArray()
+     * @covers       \RyanWHowe\BinaryTranscoder\BinaryTranscoder::determineMaxArrayLength()
+     * @covers       \RyanWHowe\BinaryTranscoder\BinaryTranscoder::convertProtectedIntToBin()
      * @param $encoded_int
      * @param $expected_decode
      * @throws \Exception
@@ -131,11 +131,11 @@ class BinaryTranscoderTest extends \PHPUnit\Framework\TestCase
      * @test
      * @dataProvider transcodingProvider
      * @dataProvider forwardTranscodingTruePadProvider
-     * @covers       \ryanwhowe\BinaryTranscoder::decodeInteger()
-     * @covers       \ryanwhowe\BinaryTranscoder::__construct()
-     * @covers       \ryanwhowe\BinaryTranscoder::convertProtectedIntToBin()
-     * @covers       \ryanwhowe\BinaryTranscoder::convertStringToArray()
-     * @covers       \ryanwhowe\BinaryTranscoder::determineMaxArrayLength()
+     * @covers       \RyanWHowe\BinaryTranscoder\BinaryTranscoder::decodeInteger()
+     * @covers       \RyanWHowe\BinaryTranscoder\BinaryTranscoder::__construct()
+     * @covers       \RyanWHowe\BinaryTranscoder\BinaryTranscoder::convertProtectedIntToBin()
+     * @covers       \RyanWHowe\BinaryTranscoder\BinaryTranscoder::convertStringToArray()
+     * @covers       \RyanWHowe\BinaryTranscoder\BinaryTranscoder::determineMaxArrayLength()
      * @param $encoded_int
      * @param $expected_decode
      * @throws \Exception
@@ -160,11 +160,11 @@ class BinaryTranscoderTest extends \PHPUnit\Framework\TestCase
      * @test
      * @dataProvider transcodingProvider
      * @dataProvider forwardTranscodingNullPadProvider
-     * @covers       \ryanwhowe\BinaryTranscoder::decodeInteger()
-     * @covers       \ryanwhowe\BinaryTranscoder::__construct()
-     * @covers       \ryanwhowe\BinaryTranscoder::convertProtectedIntToBin()
-     * @covers       \ryanwhowe\BinaryTranscoder::convertStringToArray()
-     * @covers       \ryanwhowe\BinaryTranscoder::determineMaxArrayLength()
+     * @covers       \RyanWHowe\BinaryTranscoder\BinaryTranscoder::decodeInteger()
+     * @covers       \RyanWHowe\BinaryTranscoder\BinaryTranscoder::__construct()
+     * @covers       \RyanWHowe\BinaryTranscoder\BinaryTranscoder::convertProtectedIntToBin()
+     * @covers       \RyanWHowe\BinaryTranscoder\BinaryTranscoder::convertStringToArray()
+     * @covers       \RyanWHowe\BinaryTranscoder\BinaryTranscoder::determineMaxArrayLength()
      * @param $encoded_int
      * @param $expected_decode
      * @throws \Exception
@@ -188,11 +188,11 @@ class BinaryTranscoderTest extends \PHPUnit\Framework\TestCase
     /**
      * @test
      * @dataProvider transcodingProvider
-     * @covers       \ryanwhowe\BinaryTranscoder::encodeArray()
-     * @covers       \ryanwhowe\BinaryTranscoder::__construct()
-     * @covers       \ryanwhowe\BinaryTranscoder::convertArrayToString()
-     * @covers       \ryanwhowe\BinaryTranscoder::convertBinToProtectedInt()
-     * @covers       \ryanwhowe\BinaryTranscoder::determineMaxArrayLength()
+     * @covers       \RyanWHowe\BinaryTranscoder\BinaryTranscoder::encodeArray()
+     * @covers       \RyanWHowe\BinaryTranscoder\BinaryTranscoder::__construct()
+     * @covers       \RyanWHowe\BinaryTranscoder\BinaryTranscoder::convertArrayToString()
+     * @covers       \RyanWHowe\BinaryTranscoder\BinaryTranscoder::convertBinToProtectedInt()
+     * @covers       \RyanWHowe\BinaryTranscoder\BinaryTranscoder::determineMaxArrayLength()
      * @param $expected_encode_int
      * @param $test_array
      * @throws \Exception
@@ -208,9 +208,9 @@ class BinaryTranscoderTest extends \PHPUnit\Framework\TestCase
 
     /**
      * @test
-     * @expectedException \ryanwhowe\BinaryTranscoderMaxLengthException
-     * @covers \ryanwhowe\BinaryTranscoder::__construct()
-     * @covers \ryanwhowe\BinaryTranscoder::determineMaxArrayLength
+     * @expectedException \RyanWHowe\BinaryTranscoder\BinaryTranscoderMaxLengthException
+     * @covers \RyanWHowe\BinaryTranscoder\BinaryTranscoder::__construct()
+     * @covers \RyanWHowe\BinaryTranscoder\BinaryTranscoder::determineMaxArrayLength
      * @throws \Exception
      */
     public function maxItemCountOverFlow()
@@ -226,13 +226,13 @@ class BinaryTranscoderTest extends \PHPUnit\Framework\TestCase
     /**
      * @test
      * @dataProvider             transcodingProvider
-     * @covers                   \ryanwhowe\BinaryTranscoder::encodeArray()
-     * @covers                   \ryanwhowe\BinaryTranscoder::__construct
-     * @covers                   \ryanwhowe\BinaryTranscoder::convertArrayToString
-     * @covers                   \ryanwhowe\BinaryTranscoder::determineMaxArrayLength
+     * @covers                   \RyanWHowe\BinaryTranscoder\BinaryTranscoder::encodeArray()
+     * @covers                   \RyanWHowe\BinaryTranscoder\BinaryTranscoder::__construct
+     * @covers                   \RyanWHowe\BinaryTranscoder\BinaryTranscoder::convertArrayToString
+     * @covers                   \RyanWHowe\BinaryTranscoder\BinaryTranscoder::determineMaxArrayLength
      * @param $expected_encode_int
      * @param $test_array
-     * @expectedException \ryanwhowe\BinaryTranscoderException
+     * @expectedException \RyanWHowe\BinaryTranscoder\BinaryTranscoderException
      * @expectedExceptionMessage The source array has a different length than the output string!
      * @throws \Exception
      */
@@ -247,13 +247,13 @@ class BinaryTranscoderTest extends \PHPUnit\Framework\TestCase
      * @test
      * @dataProvider             transcodingProvider
      * @dataProvider             forwardTranscodingFalsePadProvider
-     * @expectedException \ryanwhowe\BinaryTranscoderException
+     * @expectedException \RyanWHowe\BinaryTranscoder\BinaryTranscoderException
      * @expectedExceptionMessage The key array does not have enough elements for the decoded integer
-     * @covers                   \ryanwhowe\BinaryTranscoder::decodeInteger()
-     * @covers                   \ryanwhowe\BinaryTranscoder::__construct
-     * @covers                   \ryanwhowe\BinaryTranscoder::convertProtectedIntToBin
-     * @covers                   \ryanwhowe\BinaryTranscoder::convertStringToArray
-     * @covers                   \ryanwhowe\BinaryTranscoder::determineMaxArrayLength
+     * @covers                   \RyanWHowe\BinaryTranscoder\BinaryTranscoder::decodeInteger()
+     * @covers                   \RyanWHowe\BinaryTranscoder\BinaryTranscoder::__construct
+     * @covers                   \RyanWHowe\BinaryTranscoder\BinaryTranscoder::convertProtectedIntToBin
+     * @covers                   \RyanWHowe\BinaryTranscoder\BinaryTranscoder::convertStringToArray
+     * @covers                   \RyanWHowe\BinaryTranscoder\BinaryTranscoder::determineMaxArrayLength
      * @param $encoded_int
      * @param $expected_decode
      * @throws \Exception

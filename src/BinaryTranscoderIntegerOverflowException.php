@@ -6,7 +6,7 @@
  * @since  2019-05-10
  */
 
-namespace ryanwhowe;
+namespace RyanWHowe\BinaryTranscoder;
 
 class BinaryTranscoderIntegerOverflowException extends BinaryTranscoderException
 {

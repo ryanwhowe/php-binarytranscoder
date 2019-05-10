@@ -6,7 +6,7 @@
  * @since  2018-09-28
  */
 
-namespace ryanwhowe;
+namespace RyanWHowe\BinaryTranscoder;
 
 class BinaryTranscoderMaxLengthException extends BinaryTranscoderException
 {
