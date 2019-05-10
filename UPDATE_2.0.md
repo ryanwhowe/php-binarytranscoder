@@ -6,4 +6,7 @@
 * BinaryTranscoder::__construct now takes an optional maximum integer value parameter.
 * BinaryTranscoder::__construct padding paramater has been moved to the third position after the maximum integer value parameter.
 * BinaryTranscoder.decodeInteger() will now throw \ryanwhowe\BinaryTranscoderException when the passed integer is to small or two large for the key array used on instantiation.
+
 * BinaryTranscoder.encodeArray() will now throw \ryanwhowe\BinaryTranscoderException when the passed array is of different length than the key array used on instantiation.
+* Namespace changed from ryanwhowe to RyanWHowe\BinaryTranscoder
+* Changed the package name from ryanwhowe/php-binarytranscoder to ryanwhowe/binarytranscoder
