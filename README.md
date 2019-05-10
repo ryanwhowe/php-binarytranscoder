@@ -3,7 +3,9 @@
 [![GitHub release](https://img.shields.io/github/release/ryanwhowe/php-binarytranscoder.svg)](https://github.com/ryanwhowe/php-binarytranscoder)
 
 ###WARNING!!!
+
 ####This Is a Breaking Change from the v1 branch
+
 The encoder and decoder have been changed to reverse the binary string that transcoded from the input array.  This will 
 allow for bitwise searches of the encoded integer values in a backwards compatible way.  This will cause a breaking 
 change from the v1 branch if this is used to decode any integers encoded by the v1 package.  Any information encoded by
