@@ -44,6 +44,7 @@ int(13)
 ### Decoding
 decoding a value back to an array
 ```php
+use RyanWHowe\BinaryTranscoder\BinaryTranscoder;
 $output_array_key_values = array(
     'value 1',
     'value 2',
@@ -51,7 +52,7 @@ $output_array_key_values = array(
 );
 $encoded_stored_value = 13;
 
-$transcoder = new \ryanwhowe\BinaryTranscoder($output_array_key_values);
+$transcoder = new BinaryTranscoder($output_array_key_values);
 $result = $transcoder->decodeInteger($encoded_stored_value);
 var_dump($result);
 
@@ -70,30 +71,36 @@ If storing the trancoded integer value an implementation may need to limit the m
 something other than the default PHP_INT_MAX value.  **Important:** you can **NOT** exceed the PHP_INT_MAX value as this 
 is a limitation of PHP.  The example below limits to an unsigned 32 bit integer value (the max for a MySQL UNSIGNED INT column)
 ```php
-$transcoder = new \ryanwhowe\BinaryTranscoder($array_keys, 4294967295);
+use RyanWHowe\BinaryTranscoder\BinaryTranscoder;
+$transcoder = new BinaryTranscoder($array_keys, 4294967295);
 ```
 ### Padding
 The default behavior of the transcoder is to have any newly added array key default to false if there was no encoded 
 value for that key.  This behavior can be altered to default to true when instantiating the object, or to null.
 ```php
-$transcoder = new \ryanwhowe\BinaryTranscoder($array_keys, PHP_INT_MAX, \ryanwhowe\BinaryTranscoder::BOOLEAN_PAD_TRUE);
+use RyanWHowe\BinaryTranscoder\BinaryTranscoder;
+$transcoder = new BinaryTranscoder($array_keys, PHP_INT_MAX, \ryanwhowe\BinaryTranscoder::BOOLEAN_PAD_TRUE);
 ```
 
 ## Advanced Usage
 ### Max Int
-The class will check the system **PHP_MAX_INT** size when instantiated.  This is through the static method 
+The class will check the system **PHP_INT_MAX** size when instantiated.  This is through the static method 
 _determineMaxArrayLength()_ which accepts an optional integer parameter to allow you to determine the columns that can be
 encoded from a source array.  This utility function can be used with the documented limits of a particular database 
 storage type to ensure you are not exceeding you encoding abilities.  In general you will always have 1 fewer storage 
 positions than you have bits in the integer that is being encoded (see [methodology](#methodology) for more detail).
 
+As of version 2.0 the max integer value can be set to something lower than **PHP_INT_MAX**.  This can be useful if 
+storing the value in a 32bit integer, i.e. MySQL INT
+
 #### Warning
-Regardless of the storage size limitations you can not exceed your systems **PHP_MAX_INT** size!
+Regardless of the storage size limitations you can not exceed your systems **PHP_INT_MAX** size!
 
 #### example
 ```php
+use RyanWHowe\BinaryTranscoder\BinaryTranscoder;
 $mysql_small_unsigned_int_max = 65535;
-$max_columns = \ryanwhowe\BinaryTranscoder::determineMaxArrayLength($mysql_small_unsigned_int_max);
+$max_columns = BinaryTranscoder::determineMaxArrayLength($mysql_small_unsigned_int_max);
 var_dump($max_columns);
 ```
 output
@@ -104,23 +111,26 @@ int(15)
 ## Methodology
 The information is translated from a boolean array to a binary string converting true values to 1 and false values to 0.
 In order to ensure the decoding process there is an additional most significant bit added to the beginning of the binary 
-string.
+string.  This string is also reversed so that the oldest values are at the end of the string.  This is for bitwise 
+searching of the data.
 ````text
-[false, false, true, false] would become 10010 NOT 0010
+[false, false, true, false] would become 10100 NOT 0100 
 ````
 This creates a minimum value that will be stored, even for a completely false set of array values, which will be a 
 constant for the count of the array being used.  This also provides a "versioning" of the stored integer value.
 
+The best use case for the class is to have it be a resource of another class that has control over the array that will 
+be encoded and decoded into.
+
 ## Future 
 Here are some additional plans that I am working on any may appear in future releases.
 ### todo
-- [ ] Additional testing for instantiation
-- [ ] Complete documentation on class methods
-- [ ] Workout bitwise operations to make searches easier/possible/maybe :-/
-- [ ] Additional test cases
-- [ ] Explore converting this package to a php extension
+- [X] Additional testing for instantiation
+- [X] Complete documentation on class methods
+- [X] Workout bitwise operations to make searches easier/possible/maybe :-/
+- [X] Additional test cases
 
 ### Release 2.0.0 To Do
-- [ ] Allow for null values when new key items have been added
+- [X] Allow for null values when new key items have been added
 - [ ] Allow for an option to allow fewer keys than boolean values to be decoded, just dump the values for the missing 
 array keys
