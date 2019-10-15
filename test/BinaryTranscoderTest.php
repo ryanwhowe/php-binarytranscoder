@@ -7,9 +7,10 @@
  */
 namespace Test;
 
+use PHPUnit\Framework\TestCase;
 use RyanWHowe\BinaryTranscoder\BinaryTranscoder;
 
-class BinaryTranscoderTest extends \PHPUnit\Framework\TestCase
+class BinaryTranscoderTest extends TestCase
 {
 
     /**
@@ -112,8 +113,7 @@ class BinaryTranscoderTest extends \PHPUnit\Framework\TestCase
      * @param $expected_decode
      * @throws \Exception
      */
-    public function decodingFalsePad($encoded_int, $expected_decode)
-    {
+    public function decodingFalsePad($encoded_int, $expected_decode) {
         $key_array = $expected_decode;
         array_walk(
             $key_array,
@@ -140,8 +140,7 @@ class BinaryTranscoderTest extends \PHPUnit\Framework\TestCase
      * @param $expected_decode
      * @throws \Exception
      */
-    public function decodingTruePad($encoded_int, $expected_decode)
-    {
+    public function decodingTruePad($encoded_int, $expected_decode) {
 
         $key_array = $expected_decode;
         array_walk(
@@ -169,8 +168,7 @@ class BinaryTranscoderTest extends \PHPUnit\Framework\TestCase
      * @param $expected_decode
      * @throws \Exception
      */
-    public function decodingNullPad($encoded_int, $expected_decode)
-    {
+    public function decodingNullPad($encoded_int, $expected_decode) {
 
         $key_array = $expected_decode;
         array_walk(
@@ -197,8 +195,7 @@ class BinaryTranscoderTest extends \PHPUnit\Framework\TestCase
      * @param $test_array
      * @throws \Exception
      */
-    public function encoding($expected_encode_int, $test_array)
-    {
+    public function encoding($expected_encode_int, $test_array) {
 
         $tr = new BinaryTranscoder($test_array);
         $encoded = $tr->encodeArray($test_array);
@@ -213,13 +210,9 @@ class BinaryTranscoderTest extends \PHPUnit\Framework\TestCase
      * @covers \RyanWHowe\BinaryTranscoder\BinaryTranscoder::determineMaxArrayLength
      * @throws \Exception
      */
-    public function maxItemCountOverFlow()
-    {
+    public function maxItemCountOverFlow() {
         $array_count = strlen(decbin(PHP_INT_MAX));
-        $test_array = array();
-        for ($i = 1; $i <= $array_count; $i++) {
-            $test_array[$i] = false;
-        }
+        $test_array = array_fill(0, $array_count, false);
         new BinaryTranscoder($test_array);
     }
 
@@ -236,8 +229,7 @@ class BinaryTranscoderTest extends \PHPUnit\Framework\TestCase
      * @expectedExceptionMessage The source array has a different length than the output string!
      * @throws \Exception
      */
-    public function itemCountMissMatchEncoder($expected_encode_int, $test_array)
-    {
+    public function itemCountMissMatchEncoder($expected_encode_int, $test_array) {
         $tr = new BinaryTranscoder($test_array);
         array_push($test_array, array('key_z' => false));
         $tr->encodeArray($test_array);
@@ -258,8 +250,7 @@ class BinaryTranscoderTest extends \PHPUnit\Framework\TestCase
      * @param $expected_decode
      * @throws \Exception
      */
-    public function itemCountMissMatchDecoder($encoded_int, $expected_decode)
-    {
+    public function itemCountMissMatchDecoder($encoded_int, $expected_decode) {
         $key_array = array_keys($expected_decode);
         $tr = new BinaryTranscoder($key_array);
         $failure_decode = bindec(str_pad('1', count($key_array) + 2, '0', STR_PAD_RIGHT));

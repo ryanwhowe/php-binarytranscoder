@@ -1,6 +1,6 @@
 <?php declare(strict_types=1);
 /**
- * This file contains the code for the BinaryTrascoder Class
+ * This file contains the code for the BinaryTranscoder Class
  *
  * PHP 7.0.0
  * 
@@ -10,6 +10,9 @@
  */
 
 namespace RyanWHowe\BinaryTranscoder;
+
+use function array_merge;
+use function implode;
 
 /**
  * Class BinaryTranscoder
@@ -171,7 +174,7 @@ class BinaryTranscoder
      * effectively creates a minimum value that can be stored for a given number of array elements.
      *
      * @param $source_string string the source binary string
-     * @return number
+     * @return integer
      */
     private function convertBinToProtectedInt(string $source_string): int
     {
@@ -196,7 +199,7 @@ class BinaryTranscoder
                 $item = ($item) ? '1' : '0';
             }
         );
-        $result =  \implode($array_values);
+        $result =  implode($array_values);
         if ($this->array_length != strlen($result)) {
             throw new BinaryTranscoderException('The source array has a different length than the output string!');
         }
@@ -227,7 +230,7 @@ class BinaryTranscoder
         }
         //WD:RWH - 2018-10-09: this is where the trimming of the value array will be needed to match the key array
         if (null === $this->pad_boolean) {
-            $value_array = \array_merge(
+            $value_array = array_merge(
                 $value_array,
                 array_fill(count($value_array), count($key_array)-count($value_array), null)
             );
